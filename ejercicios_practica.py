@@ -138,6 +138,12 @@ def insert(grade):
     conn = sqlite3.connect('secundaria.db')
     c = conn.cursor()
 
+    while True:
+        if len(grade) < 4:
+            grade.append("")
+        else: 
+            break
+
 
     c.execute("""
         INSERT INTO estudiante (name, age, grade, tutor)
@@ -145,6 +151,8 @@ def insert(grade):
 
     conn.commit()
     conn.close()
+
+    fetch()
 
 
 def modify(id, name):
